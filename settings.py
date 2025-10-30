@@ -17,3 +17,5 @@ class Settings(BaseSettings):
         env_file = ".env" # Carga las variables desde el archivo .env
 
 # Exportar la instancia para usarla en la aplicación
+
+settings = Settings()
