@@ -24,7 +24,7 @@ error_tracking = {}
 # Handler personalizado para rate limit
 @app.exception_handler(RateLimitExceeded)
 async def custom_rate_limit_handler(request: Request, exc: RateLimitExceeded):
-    """Manejador que detecta si es comportamiento de bot o límite normal"""
+    # Manejador que detecta si es comportamiento de bot o límite normal
     ip = request.client.host if request.client else "unknown"
     
     # Verificar si hay envíos exitosos recientes muy rápidos
@@ -161,5 +161,5 @@ async def create_contact(
     except Exception as e:
         # ERROR INESPERADO
         print(f"Error inesperado en el endpoint: {e}")
-        error_html = '<div id="form-response" class="error"><strong>Error en el sistema.</strong> No pudimos enviar tu mensaje. Por favor, contáctanos por WhatsApp o por correo electrónico.</div>'
+        error_html = '<div id="form-response" class="error"><strong>Error en el sistema.</strong> No fue posible enviar tu información. Por favor, contáctanos por WhatsApp o por correo electrónico.</div>'
         return HTMLResponse(content=error_html, status_code=500)
